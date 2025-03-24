@@ -21,31 +21,31 @@ namespace Concat.Api.Server.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<HospitalNoDto>>> Get()
+        public async Task<ActionResult<IEnumerable<HospitalNo>>> Get()
         {
             var hospitalNos = await _context.HospitalNo.ToListAsync();
-            var result = _mapper.Map<IEnumerable<HospitalNoDto>>(hospitalNos);
+            var result = _mapper.Map<IEnumerable<HospitalNo>>(hospitalNos);
             return Ok(result);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<HospitalNoDto>> Get(int id)
+        public async Task<ActionResult<HospitalNo>> Get(int id)
         {
             var hospitalNo = await _context.HospitalNo.FindAsync(id);
             if (hospitalNo == null) return NotFound();
 
-            var result = _mapper.Map<HospitalNoDto>(hospitalNo);
+            var result = _mapper.Map<HospitalNo>(hospitalNo);
             return Ok(result);
         }
 
         [HttpPost]
-        public async Task<ActionResult<HospitalNoDto>> Post([FromBody] HospitalNoDto dto)
+        public async Task<ActionResult<HospitalNo>> Post([FromBody] HospitalNoDto dto)
         {
             var hospitalNo = _mapper.Map<HospitalNo>(dto);
             _context.HospitalNo.Add(hospitalNo);
             await _context.SaveChangesAsync();
 
-            var result = _mapper.Map<HospitalNoDto>(hospitalNo);
+            var result = _mapper.Map<HospitalNo>(hospitalNo);
             return CreatedAtAction(nameof(Get), new { id = hospitalNo.Hospitalno }, result);
         }
     }

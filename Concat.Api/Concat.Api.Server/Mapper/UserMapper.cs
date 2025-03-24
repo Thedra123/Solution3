@@ -8,7 +8,7 @@ namespace Concat.Api.Server.Mapper
     {
         public UserMapper() 
         {
-            CreateMap<User, UserDto>();
+            CreateMap<UserDto, User>();
         }
     }
 }

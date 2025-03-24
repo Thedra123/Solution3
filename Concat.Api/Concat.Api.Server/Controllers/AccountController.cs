@@ -1,5 +1,6 @@
 ﻿using Concat.Api.Server.Dto;
 using Concat.API.Infraction.Abstruct;
+using Concat.API.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -22,7 +23,7 @@ namespace Concat.Api.Server.Controllers
         }
 
         [HttpPost("SignIn")]
-        public async Task<ActionResult<string>> SignIn([FromBody] SightInDto dto)
+        public async Task<ActionResult<User>> SignIn([FromBody] SightInDto dto)
         {
             var user = await _userRepository.Get(s => s.FirstName == dto.Name && s.Password == dto.Password);
             if (user == null)

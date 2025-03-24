@@ -2,7 +2,8 @@
 {
     public class UserDto
     {
-        public string Firsname { get; set; }
-        public string Lastname { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+        public string? Password { get; set; }
     }
 }

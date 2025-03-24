@@ -8,7 +8,7 @@ namespace Concat.Api.Server.Mapper
     {
         public HospitalNoMapper()
         {
-            CreateMap<HospitalNo, HospitalNoDto>();
+            CreateMap<HospitalNoDto, HospitalNo>();
         }
     }
 }
