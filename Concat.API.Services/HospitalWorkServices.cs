@@ -27,7 +27,7 @@ namespace Concat.API.Services
             return entity;
         }
 
-        public async Task<bool> Delete(HospitalWork entity)
+        public async Task<bool> Delete1(HospitalWork entity)
         {
             _hospitalworkdb.Works.Remove(entity);
             return await _hospitalworkdb.SaveChangesAsync() > 0;
@@ -40,8 +40,9 @@ namespace Concat.API.Services
 
         public async Task<IEnumerable<HospitalWork>> GetAll()
         {
-            return await _hospitalworkdb.Works.ToListAsync();
+            return await _hospitalworkdb.Works.ToListAsync(); 
         }
+
 
         public async Task Update(HospitalWork entity)
         {

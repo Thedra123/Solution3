@@ -9,5 +9,6 @@ namespace Concat.API.Infraction.Abstruct
 {
     public interface IHospitalWorkRepositories : IRepositories<HospitalWork>
     {
+        Task<IEnumerable<HospitalWork>> GetAll();
     }
 }
