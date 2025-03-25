@@ -48,5 +48,19 @@ namespace Concat.Api.Server.Controllers
             var result = _mapper.Map<HospitalNo>(hospitalNo);
             return CreatedAtAction(nameof(Get), new { id = hospitalNo.Hospitalno }, result);
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, [FromBody] HospitalNoDto dto)
+        {
+            var existingHospitalNo = await _context.HospitalNo.FindAsync(id);
+            if (existingHospitalNo == null)
+                return NotFound($"HospitalNo with ID {id} not found.");
+
+            _mapper.Map(dto, existingHospitalNo); 
+            _context.Entry(existingHospitalNo).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return NoContent(); 
+        }
     }
 }

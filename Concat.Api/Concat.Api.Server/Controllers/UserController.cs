@@ -47,5 +47,18 @@ namespace Concat.Api.Server.Controllers
             var dataToReturn = _mapper.Map<User>(returnEntity);
             return Ok(dataToReturn);
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, [FromBody] UserDto item)
+        {
+            var existingUser = await _userServices.Get(u => u.Id == id);
+            if (existingUser == null)
+                return NotFound($"User with ID {id} not found.");
+
+            _mapper.Map(item, existingUser); 
+            await _userServices.Update(existingUser);
+
+            return NoContent(); 
+        }
     }
 }
