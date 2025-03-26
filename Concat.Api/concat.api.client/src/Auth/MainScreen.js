@@ -6,7 +6,7 @@ const MainScreen = () => {
     const [hospitals, setHospitals] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:5000/api/HospitalNo") // API endpoint
+        fetch("http://localhost:5062/api/HospitalNo") 
             .then((response) => response.json())
             .then((data) => setHospitals(data))
             .catch((error) => console.error("Error fetching hospitals:", error));

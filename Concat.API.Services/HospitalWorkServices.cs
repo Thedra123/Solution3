@@ -27,7 +27,7 @@ namespace Concat.API.Services
             return entity;
         }
 
-        public async Task<bool> Delete1(HospitalWork entity)
+        public async Task<bool> Delete(HospitalWork entity)
         {
             _hospitalworkdb.Works.Remove(entity);
             return await _hospitalworkdb.SaveChangesAsync() > 0;
@@ -50,15 +50,7 @@ namespace Concat.API.Services
             await _hospitalworkdb.SaveChangesAsync();
         }
 
-        Task<HospitalWork> IRepositories<HospitalWork>.Delete(HospitalWork entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerable<HospitalWork> IRepositories<HospitalWork>.GetAll()
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 
 }

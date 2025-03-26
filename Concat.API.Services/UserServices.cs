@@ -54,15 +54,9 @@ namespace Concat.API.Services
             await _userdb.SaveChangesAsync();
         }
 
-        Task<User> IRepositories<User>.Delete(User entity)
-        {
-            throw new NotImplementedException();
-        }
+        
 
-        IEnumerable<User> IRepositories<User>.GetAll()
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 
 }

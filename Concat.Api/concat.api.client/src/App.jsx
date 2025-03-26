@@ -31,10 +31,10 @@ function App() {
 
             <div className="container mt-4">
                 <Routes>
-                    <Route path="/" element={<Login />} />  {/* Varsayılan olarak Login sayfası */}
+                    <Route path="/" element={<Login />} />  {"http://localhost:5073/api/login"}
                     <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/dashboard" element={<Dashboard />} />  {/* Dashboard sayfasını ekliyoruz */}
+                    <Route path="/register" element={<Register />} /> {"http://localhost:5000/api/register"}
+                    {/*<Route path="/dashboard" element={<Dashboard />} />  */}{/* Dashboard sayfasını ekliyoruz */}
                 </Routes>
             </div>
         </Router>

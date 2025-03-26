@@ -9,10 +9,10 @@ namespace Concat.API.Infraction.Abstruct
 {
     public interface IRepositories<T> where T : class
     {
-        IEnumerable<T> GetAll();
+        Task<IEnumerable<T>> GetAll();
         Task<T> Get(Expression<Func<T, bool>> predicate);
         Task<T> Add(T entity);
         Task Update(T entity);
-        Task<T> Delete(T entity);
+        Task<bool> Delete(T entity);
     }
 }

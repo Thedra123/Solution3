@@ -35,6 +35,7 @@ builder.Services.AddAutoMapper(typeof(UserMapper).Assembly);
 builder.Services.AddAutoMapper(typeof(RegisterMapper).Assembly);
 builder.Services.AddAutoMapper(typeof(HospitalNoMapper).Assembly);
 builder.Services.AddAutoMapper(typeof(HospitalWorkMapper).Assembly);
+builder.Services.AddAutoMapper(typeof(GotTicketMapper).Assembly);
 
 
 var app = builder.Build();
