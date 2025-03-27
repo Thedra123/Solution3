@@ -1,11 +1,32 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Concat.API.Model;
 using Concat.API.Services;
 using Concat.API.Infraction.Conctret;
 using Concat.API.Infraction.Abstruct;
 using Concat.Api.Server.Mapper;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var key = Encoding.ASCII.GetBytes(builder.Configuration["Jwt:SecretKey"]);
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.RequireHttpsMetadata = false;
+        options.SaveToken = true;
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(key),
+            ValidateIssuer = false,
+            ValidateAudience = false
+        };
+    });
+
+builder.Services.AddAuthorization();
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -37,7 +58,6 @@ builder.Services.AddAutoMapper(typeof(HospitalNoMapper).Assembly);
 builder.Services.AddAutoMapper(typeof(HospitalWorkMapper).Assembly);
 builder.Services.AddAutoMapper(typeof(GotTicketMapper).Assembly);
 
-
 var app = builder.Build();
 
 app.UseDefaultFiles();
@@ -51,7 +71,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+
+app.UseAuthentication(); 
 app.UseAuthorization();
+
 app.MapControllers();
 app.MapFallbackToFile("/index.html");
 
