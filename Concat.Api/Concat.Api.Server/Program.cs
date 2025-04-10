@@ -26,6 +26,17 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp", policy =>
+    {
+        policy.WithOrigins("http://localhost:5173")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
+
 builder.Services.AddAuthorization();
 
 // Add services to the container.
@@ -46,10 +57,14 @@ builder.Services.AddDbContext<HospitalWorkDbContext>(options =>
 builder.Services.AddDbContext<UserDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("UserConnection")));
 
+builder.Services.AddDbContext<AdminDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("AdminConnection")));
+
 // Add repository services
 builder.Services.AddScoped<IUserRepositories, UserServices>();
 builder.Services.AddScoped<IHospitalWorkRepositories, HospitalWorkServices>();
 builder.Services.AddScoped<IGotTicketRepositories, GotTicketServices>();
+builder.Services.AddScoped<IAdminRepositories, AdminServices>();
 
 // Add AutoMapper
 builder.Services.AddAutoMapper(typeof(UserMapper).Assembly);
@@ -76,6 +91,7 @@ app.UseHttpsRedirection();
 app.UseAuthentication(); 
 app.UseAuthorization();
 
+app.UseCors("AllowReactApp"); 
 app.MapControllers();
 app.MapFallbackToFile("/index.html");
 

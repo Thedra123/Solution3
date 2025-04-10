@@ -1,7 +1,6 @@
 ﻿import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Login from "./Login";
-import Register from "./Register";
-import Dashboard from "./Dashboard";  // Dashboard component'ini ekliyoruz
+import Login from "./Auth/Login";
+import Register from "./Auth/Register";
 import "./App.css";
 
 function App() {
@@ -21,7 +20,7 @@ function App() {
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" to="/register">
-                                    Kayıt Ol
+                                    Qeyd
                                 </Link>
                             </li>
                         </ul>
@@ -31,10 +30,10 @@ function App() {
 
             <div className="container mt-4">
                 <Routes>
-                    <Route path="/" element={<Login />} />  {"http://localhost:5073/api/login"}
+                    <Route path="/" element={<Login />} />  {"http://localhost:7056/api/login"}
                     <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} /> {"http://localhost:5000/api/register"}
-                    {/*<Route path="/dashboard" element={<Dashboard />} />  */}{/* Dashboard sayfasını ekliyoruz */}
+                    <Route path="/register" element={<Register />} /> {"http://localhost:7056/api/register"}
+                    
                 </Routes>
             </div>
         </Router>

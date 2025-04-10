@@ -30,7 +30,8 @@ namespace Concat.Api.Server.Controllers
             var newUser = new User
             {
                 FirstName = dto.Name,
-                Password = dto.Password // Burada şifre hashleme ekleyebilirsin
+                LastName = dto.LastName,
+                Password = dto.Password 
             };
 
             await _userRepository.Add(newUser);

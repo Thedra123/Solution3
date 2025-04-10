@@ -17,7 +17,7 @@ namespace Concat.API.Infraction.Conctret
             {
                 optionsBuilder.UseSqlServer(
                     "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=GotTicketDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False;",
-                    options => options.MigrationsAssembly("Concat.Api.Server"));  // Burada doğru assembly belirtildi
+                    options => options.MigrationsAssembly("Concat.Api.Server"));  
             }
         }
     }

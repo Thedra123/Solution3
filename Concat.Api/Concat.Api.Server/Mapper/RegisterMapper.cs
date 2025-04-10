@@ -9,9 +9,10 @@ namespace Concat.Api.Server.Mapper
         public RegisterMapper() 
         {
             CreateMap<RegisterDto, User>()
-                .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.Name))
-                .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.Password))
-                .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.Lastname));
+    .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.Name))
+    .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName)) 
+    .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.Password));
+
         }
     }
 }
